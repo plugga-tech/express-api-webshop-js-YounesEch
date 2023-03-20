@@ -1,0 +1,15 @@
+body{
+    background-color: black;
+    color: goldenrod;
+}
+
+#list{
+    display: grid;
+    justify-items: center;
+}
+
+.list{
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    gap: 10rem;
+}

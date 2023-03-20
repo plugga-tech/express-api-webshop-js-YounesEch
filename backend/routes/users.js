@@ -15,13 +15,9 @@ router.get('/', function(req, res, next) {
 
 
 
-
 /***********skapa ny användare**********/
-router.post('/', function(req, res, next) {  
-  /***********skapa ny användare till databasen*/
+router.post('/add', function(req, res, next) {  
   let newUser = {name: req.body.name};
-  let usersPassword = crypto.SHA3(req.body.password).toString();
-  newUser.password =usersPassword;
   console.log("new User", newUser);
 
   req.app.locals.db.collection("users").insertOne(newUser)
