@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const fs= require("fs");
 const crypto = require("crypto-js");
+const { ObjectId } = require('mongodb');
+
 
 //skapa en användare
 //logga in användare
@@ -10,10 +12,24 @@ const crypto = require("crypto-js");
 
 
 router.get('/', function(req, res, next) {
-  res.json(users);
+  //hur döljer vi lösenord??
+  req.app.locals.db.collection("users").find({},{projection:{password:0}}).toArray()
+  .then(result => {
+    console.log("resultat från get Users", result);
+    res.json(result)
+  })
 });
 
-
+/*******hämta specifik användare*******/
+router.get('/:userId', function(req, res, next) {
+  userId= req.params.userId;
+  console.log(userId);
+  req.app.locals.db.collection("users").findOne({"_id": new ObjectId(userId)})
+  .then( result=> {
+    console.log("hitta user", result); 
+    res.json(result);
+  })
+})
 
 /***********skapa ny användare**********/
 router.post('/add', function(req, res, next) {  
@@ -32,11 +48,18 @@ router.post('/add', function(req, res, next) {
 })
 
 /***************logga in användare**********/
+//måste titta på denna!!!!
 router.post('/login', function(req, res, next){
+  let userEmail = req.body.email;
+  let userPassword = req.body.password;
+  //console.log(userEmail, userPassword);
+  
+  let users = req.app.locals.db.collection("users").toArray();
+  console.log(users);
 
 })
 
-
+  
 
 
 

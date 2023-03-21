@@ -9,7 +9,7 @@ GET http://localhost:3000/api/users
 ###
 
 // HÄMTA SPECIFIK USER // SKICKA HELA OBJEKTET
-GET http://localhost:3000/api/users/6418dec296725cfb9d23c1f4
+POST http://localhost:3000/api/users/
 Content-Type: application/json
 
 {
@@ -25,7 +25,7 @@ Content-Type: application/json
 {
   "name": "younes",
   "email": "younes@mail.com",
-  "password": "younes"
+  "password": "test"
 }
 
 ###
@@ -35,8 +35,8 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-  "email": "// EN USER EMAIL",
-  "password": "// EN USER EMAIL"
+  "email": "younes@mail.com",
+  "password": "test"
 }
 
 ###
@@ -62,9 +62,9 @@ POST http://localhost:3000/api/products/add
 Content-Type: application/json
 
 {
-  "name": "Produkt 1",
-  "description": "Beskrivning av produkt 1",
-  "price": 100, 
+  "name": "Versace",
+  "description": "Jacka",
+  "price": 1000, 
   "lager": 10
 }
 

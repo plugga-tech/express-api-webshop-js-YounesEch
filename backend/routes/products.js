@@ -27,6 +27,23 @@ router.get('/', function(req, res, next) {
 })
 
 
+/***********skapa produkter**********/
+router.post('/add', function(req, res, next) {  
+  let newProduct = {name: req.body.name};
+  let description = req.body.description;
+  let price = req.body.price;
+  let lager = req.body.lager;
+  newProduct.description = description;
+  newProduct.price = price;
+  newProduct.lager= lager;
+  console.log("ny produkt", newProduct);
+
+  req.app.locals.db.collection("products").insertOne(newProduct)
+  .then(result =>{
+    console.log("result från db", result);
+    res.json(result);
+  })
+})
 
 
 
