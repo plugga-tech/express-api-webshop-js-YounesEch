@@ -9,22 +9,15 @@ const { url } = require('inspector');
 //lagervärdet i databasen ska minskas när man skickar iväg en order.
 //info om producterna ska displyas, namn, bild och pris. 
 
-let clothes = [
-    {id:1, name:"Versace", price:200,},
-    {id:2, name:"Armani", price:300},
-    {id:3, name:"Dior", price:400},
-    {id:4, name:"Boss", price:200},
-    {id:5, name:"Sail Racing", price:800},
-    {id:6, name:"Parajumpers", price:400},
-    {id:7, name:"Stone Island", price:900},
-    {id:8, name:"Moshino", price:1000},
-    {id:9, name:"Dsquared", price:100},
-    {id:10, name:"Mosse", price:750}
-  ]
-
+/***********hämta alla produkter*******/
 router.get('/', function(req, res, next) {
-    res.json(clothes);
-})
+    req.app.locals.db.collection("products").find().toArray()
+  .then(result => {
+    console.log("resultat från produkterna  ", result);
+    res.json(result)
+  })
+});
+
 
 
 /***********skapa produkter**********/
