@@ -3,6 +3,8 @@ var router = express.Router();
 const fs= require("fs");
 const crypto = require("crypto-js");
 const { url } = require('inspector');
+const { ObjectId } = require('mongodb');
+
 
 //10 producter
 //ska gå och köpa product (lägga till i varukorgen)
@@ -17,6 +19,17 @@ router.get('/', function(req, res, next) {
     res.json(result)
   })
 });
+
+/**********hämta specifik produkt ********/
+router.get('/:productsId', function(req, res, next) {
+  productsId= req.params.productsId;
+  console.log(productsId);
+  req.app.locals.db.collection("products").findOne({"_id": new ObjectId(productsId)})
+  .then( result=> {
+    console.log("hitta kläder", result); 
+    res.json(result);
+  })
+})
 
 
 

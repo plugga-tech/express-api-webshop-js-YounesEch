@@ -31,6 +31,7 @@ router.get('/:userId', function(req, res, next) {
   })
 })
 
+
 /***********skapa ny användare**********/
 router.post('/add', function(req, res, next) {  
   let newUser = {name: req.body.name};
@@ -47,16 +48,17 @@ router.post('/add', function(req, res, next) {
   })
 })
 
-/***************logga in användare**********/
-//måste titta på denna!!!!
-router.post('/login', function(req, res, next){
-  let userEmail = req.body.email;
-  let userPassword = req.body.password;
-  //console.log(userEmail, userPassword);
-  
-  let users = req.app.locals.db.collection("users").toArray();
-  console.log(users);
 
+
+/***************logga in användare**********/
+router.post('/login', function(req, res, next){
+  const {email, password} = req.body; 
+  console.log(email, password);
+  
+  req.app.locals.db.collection("users").findOne({"email": email})
+  .then(result => {
+    res.json(result)
+  })
 })
 
   

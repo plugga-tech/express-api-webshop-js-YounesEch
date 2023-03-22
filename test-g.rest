@@ -23,8 +23,8 @@ POST http://localhost:3000/api/users/add
 Content-Type: application/json
 
 {
-  "name": "younes",
-  "email": "younes@mail.com",
+  "name": "Youssef",
+  "email": "youssef@mail.com",
   "password": "test"
 }
 
@@ -35,7 +35,7 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-  "email": "younes@mail.com",
+  "email": "youssef@mail.com",
   "password": "test"
 }
 
@@ -53,7 +53,7 @@ GET http://localhost:3000/api/products
 ###
 
 // HÄMTA SPECIFIK PRODUKT
-GET http://localhost:3000/api/products/ // ID PÅ PRODUKT
+GET http://localhost:3000/api/products/641a2a6abfdb2510dc1c1b27
 
 ###
 
@@ -62,10 +62,10 @@ POST http://localhost:3000/api/products/add
 Content-Type: application/json
 
 {
-  "name": "Mose knuckles",
+  "name": "Sail Racing",
   "description": "Jacka",
-  "price": 1000, 
-  "lager": 5
+  "price": 1400, 
+  "lager": 8
 }
 
 ###
