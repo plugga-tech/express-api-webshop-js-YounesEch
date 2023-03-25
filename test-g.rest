@@ -79,15 +79,15 @@ POST http://localhost:3000/api/orders/add
 Content-Type: application/json
 
 {
-  "user": "{{getUsers.response.body.$[0].id}}",
+  "user": "641b7a4896d32b133b71f525",
       "products": [
     {
-      "productId": "// ID PÅ EN PRODUKT",
-      "quantity": 1
+      "productId": "641a2dc6608516b3f9eef5aa",
+      "quantity": 3
     },
     {
-      "productId": "// ID PÅ EN PRODUKT",
-      "quantity": 2
+      "productId": "641a2e05608516b3f9eef5ac",
+      "quantity": 1
     }
   ]
 }
