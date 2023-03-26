@@ -3,6 +3,7 @@ var router = express.Router();
 const fs= require("fs");
 const crypto = require("crypto-js");
 const { ObjectId } = require('mongodb');
+const userSchema = require('../models/User')
 
 
 //skapa en användare
@@ -51,15 +52,19 @@ router.post('/add', function(req, res, next) {
 
 
 /***************logga in användare**********/
-router.post('/login', function(req, res, next){
-  const {email, password} = req.body; 
-  console.log(email, password);
-  
-  req.app.locals.db.collection("users").findOne({"email": email})
+router.post('/login', async (req, res, next)=> {
+const {email, password} = req.body;
+  req.app.locals.db.collection("users").findOne({email: email})
   .then(result => {
-    res.json(result)
-  })
-})
+    console.log(result);
+    if(result && crypto.SHA3(password).toString() === result.password){
+console.log(email);
+    res.status(201).json({email: result.email, password: result.password})
+    }else{
+    res.status(401).json("Incorrect password or username");
+    }
+    })
+});
 
   
 
